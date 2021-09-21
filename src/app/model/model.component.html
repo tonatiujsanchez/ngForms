@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <form [formGroup]="formulario" (ngSubmit)="enviar()">
+            <div class="form-group mb-3">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+            <div class="form-group mb-3">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" formControlName="apellidos">
+            </div>
+            <div class="form-group mb-3">
+                <label>Edad</label>
+                <input type="text" class="form-control" formControlName="edad">
+            </div>
+            <div class="form-group mb-3">
+                <label>DNI</label>
+                <input type="text" class="form-control" formControlName="dni">
+            </div>
+            <div class="form-group mb-3">
+                <label>Email</label>
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+            <div class="form-group mb-3">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+            <div class="form-group mb-4">
+                <label>Respita password</label>
+                <input type="password" class="form-control" formControlName="repitePassword">
+            </div>
+            <div class="row w-100">
+                <input type="submit" value="Enviar" class="btn btn-dark w-25 ms-auto">
+            </div>
+        </form>
+    </div>
+</div>
+
+<pre>
+    {{ formulario.value | json }}
+</pre>

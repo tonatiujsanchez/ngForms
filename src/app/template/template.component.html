@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+    <div class="col-6">
+        <form #formRegistro="ngForm" (ngSubmit)="enviar(formRegistro.value)">
+            <div class="form-group mb-3">
+                <label for="">Nombre</label>
+                <input type="text" class="form-control" name="nombre" ngModel>
+            </div>
+            <div class="form-group mb-3">
+                <label for="">Apellidos</label>
+                <input type="text" class="form-control" name="apellido" ngModel>
+            </div>
+            <div class="form-group mb-3">
+                <label for="">Edad</label>
+                <input type="text" class="form-control" name="edad" ngModel>
+            </div>
+            <div class="form-group mb-4">
+                <label for="">Dirección</label>
+                <input type="text" class="form-control" name="direccion" ngModel>
+            </div>
+            <div class="row w-100">
+                <input type="submit" value="Enviar" class="btn btn-dark w-25 ms-auto">
+            </div>
+        </form>
+    </div>
+</div>
+
+<pre>
+    {{ formRegistro.value| json }}
+</pre>

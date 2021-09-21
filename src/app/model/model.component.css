@@ -1,0 +1,17 @@
+/* 
+ng-invalid:  el campo no cumple con la validación
+ng-touched:  Ya se hizo click en el campo y luego se salio
+ng-dirty:    El campo ya tuvo caracteres( Ya fue tecleado o ensuciado )
+*/
+/* 
+ng-valid:     El campo cimple con la validación
+ng-untouched  Aun no se a tocado el campo
+ng-pristine   Aun no se a tecleado en el campo
+*/
+
+input.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+input.ng-valid.ng-touched{
+    border: 2px solid green;
+}
