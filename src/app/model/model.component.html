@@ -2,24 +2,63 @@
     <div class="col-6">
         <form [formGroup]="formulario" (ngSubmit)="enviar()">
             <div class="form-group mb-3">
-                <label>Nombre</label>
+                <label>Nombre <code>*</code></label>
                 <input type="text" class="form-control" formControlName="nombre">
+                <div class="row w-100">
+                    <div class="col-3">
+                        <code><strong>Valido: </strong>{{ formulario.controls.nombre.valid }}</code>
+                    </div>
+                    <div class="col-4">
+                        <code><strong>Tecleado: </strong>{{ formulario.controls.nombre.dirty }}</code>
+                    </div>
+                    <div class="col-4">
+                        <code><strong>Tocado: </strong>{{ formulario.controls.nombre.touched }}</code>
+                    </div>
+                </div>
+                <code *ngIf="formulario.controls.nombre.errors && formulario.controls.nombre.touched" class="error">
+                    El campo <strong>nombre</strong> es erroneo.
+                </code>
+
             </div>
             <div class="form-group mb-3">
-                <label>Apellidos</label>
+                <label>Apellidos <code>*</code></label>
                 <input type="text" class="form-control" formControlName="apellidos">
+                <code *ngIf="formulario.controls.apellidos.errors?.required && formulario.controls.apellidos.touched" class="error">
+                    El campo <strong>apellidos</strong> es requerido.
+                </code>
+                <code *ngIf="formulario.controls.apellidos.errors?.minlength && formulario.controls.apellidos.touched" class="error">
+                    El campo <strong>apellidos</strong> requiere almenos 3 caracteres.
+                </code>
+                <code *ngIf="formulario.controls.apellidos.errors?.maxlength && formulario.controls.apellidos.touched" class="error">
+                    El campo <strong>apellidos</strong> requiere maximo 8 caracteres.
+                </code>
             </div>
             <div class="form-group mb-3">
-                <label>Edad</label>
+                <label>Edad <code>*</code></label>
                 <input type="text" class="form-control" formControlName="edad">
+                <code *ngIf="formulario.controls.edad.errors?.required && formulario.controls.edad.touched" class="error">
+                    El campo <strong>edad</strong> es requerido.
+                </code>
+                <code *ngIf="formulario.controls.edad.errors?.edadvalidator && !formulario.controls.edad.errors?.required && formulario.controls.edad.touched" class="error">
+                    Necesitas tener entre <strong>18</strong> y <strong>40</strong> años para registrarte.
+                </code>
             </div>
             <div class="form-group mb-3">
                 <label>DNI</label>
                 <input type="text" class="form-control" formControlName="dni">
+                <code *ngIf="formulario.controls.dni.errors?.dnivalidator && formulario.controls.dni.touched">
+                    {{ formulario.controls.dni.errors?.dnivalidator }}
+                </code>
             </div>
             <div class="form-group mb-3">
-                <label>Email</label>
+                <label>Email <code>*</code></label>
                 <input type="text" class="form-control" formControlName="email">
+                <code *ngIf="formulario.controls.email.errors?.required && formulario.controls.email.touched">
+                    El email es requerido
+                </code>
+                <code *ngIf="formulario.controls.email.errors?.pattern && formulario.controls.email.touched">
+                    El email no es valido, debe cumplir con el siguente formato: nombre@ejemplo.com
+                </code>
             </div>
             <div class="form-group mb-3">
                 <label>Password</label>
@@ -30,12 +69,31 @@
                 <input type="password" class="form-control" formControlName="repitePassword">
             </div>
             <div class="row w-100">
-                <input type="submit" value="Enviar" class="btn btn-dark w-25 ms-auto">
+                <input type="submit" value="Enviar" class="btn btn-dark w-25 ms-auto" [disabled]="!formulario.valid">
             </div>
         </form>
     </div>
+    <div class="col-6">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h4>Data:</h4>
+                <pre>{{ formulario.value | json }}</pre>
+            </div>
+            <div class="col-8">
+                <h4>Estado de formulario:</h4>
+                <code><strong>Valido: </strong>{{ formulario.valid }}</code>
+                <!-- <br> -->
+                <!-- <code><strong>Invalido: </strong>{{ formulario.invalid }}</code> -->
+                <br>
+                <code><strong>Ensuciado: </strong>{{ formulario.dirty }}</code>
+                <br>
+                <code><strong>Tocado: </strong>{{ formulario.touched }}</code>
+            </div>
+            <div class="col-8 mt-4">
+                <h4>Errores del compo <strong>Apellidos</strong></h4>
+                <pre>{{ formulario.controls.apellidos.errors | json }}</pre>
+                <code>{{ formulario.controls.email.errors | json }}</code>
+            </div>
+        </div>
+    </div>
 </div>
-
-<pre>
-    {{ formulario.value | json }}
-</pre>
